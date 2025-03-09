@@ -2,7 +2,7 @@ name: "Speech_To_Text_Finetuning"
 
 # use `init_from_nemo_model` or `init_from_pretrained_model` to initialize the model
 # We do not currently support `init_from_ptl_ckpt` to create a single script for all types of models.
-init_from_pretrained_model: ??
+init_from_pretrained_model: /kaggle/input/model-v2/other/default/1/ne.nemo
 
 model:
   sample_rate: 16000
@@ -58,10 +58,10 @@ model:
     update_labels: false
     labels: null # example list config: \[' ', 'a', 'b', 'c'\]
 
-  tokenizer: # use for spe/bpe based tokenizer models
-    update_tokenizer: false
-    # dir: null  # path to directory which contains either tokenizer.model (bpe) or vocab.txt (for wpe)
-    type: bpe  # Can be either bpe (SentencePiece tokenizer) or wpe (WordPiece tokenizer)
+  # tokenizer: # use for spe/bpe based tokenizer models
+  #   update_tokenizer: false
+  #   # dir: null  # path to directory which contains either tokenizer.model (bpe) or vocab.txt (for wpe)
+  #   type: bpe  # Can be either bpe (SentencePiece tokenizer) or wpe (WordPiece tokenizer)
 
   spec_augment:
     _target_: nemo.collections.asr.modules.SpectrogramAugmentation
