@@ -2,7 +2,7 @@ name: "Speech_To_Text_Finetuning"
 
 # use `init_from_nemo_model` or `init_from_pretrained_model` to initialize the model
 # We do not currently support `init_from_ptl_ckpt` to create a single script for all types of models.
-init_from_nemo_model: "/kaggle/input/indic-conformer-nepali/pytorch/default/1/models/ne.nemo"
+init_from_nemo_model: /kaggle/input/indic-conformer-nepali/pytorch/default/1/models/ne.nemo
 
 model:
   sample_rate: 16000
@@ -12,7 +12,7 @@ model:
   skip_nan_grad: false
 
   train_ds:
-    manifest_filepath: "/kaggle/input/indic-conformer-nepali/pytorch/default/1/models/ne.nemo"
+    manifest_filepath: /kaggle/input/indic-conformer-nepali/pytorch/default/1/models/ne.nemo
     sample_rate: ${model.sample_rate}
     batch_size: 1
     shuffle: true
@@ -31,7 +31,7 @@ model:
     return_language_id: true 
 
   validation_ds:
-    manifest_filepath: "/kaggle/input/wiseyak-voice-data/input-20250309T152930Z-001/input/validation_data/valid_manifest_with_ids.json"
+    manifest_filepath: /kaggle/input/wiseyak-voice-data/input-20250309T152930Z-001/input/validation_data/valid_manifest_with_ids.json
     sample_rate: ${model.sample_rate}
     batch_size: 16
     language_ids: 0
@@ -91,7 +91,7 @@ trainer:
   max_epochs: 10
   max_steps: -1 # computed at runtime if not set
   val_check_interval: 1.0 # Set to 0.25 to check 4 times per epoch, or an int for number of iterations
-  accelerator: auto
+  accelerator: gpu
   strategy: "ddp_find_unused_parameters_true"
   accumulate_grad_batches: 1
   gradient_clip_val: 0.0
